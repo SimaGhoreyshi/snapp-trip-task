@@ -1,9 +1,10 @@
 import React from "react";
+
+import "./myForm.css";
 import useForm from "../utils/useForm";
 import Input from "../components/input/input";
-import { email, firstName, rules } from "../utils/validationRules";
 
-const MyForm = () => {
+const MyForm = (initialData) => {
   const {
     data,
     errors,
@@ -12,14 +13,10 @@ const MyForm = () => {
     handleChange,
     handleBlur,
     handleSubmit,
-  } = useForm({
-    name: "",
-    email: "",
-  });
-  console.log(errors);
+  } = useForm(initialData);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="my-form" onSubmit={handleSubmit}>
       <Input
         label={"نام"}
         onChange={(event) => handleChange("firstName", event)}
@@ -27,10 +24,15 @@ const MyForm = () => {
         name="firstName"
         value={data.firstName}
         type="text"
-        rules={rules.firstName}
       />
-
-      {touched.name && errors.name && <div>{errors.name}</div>}
+      <Input
+        label={"نام خانوادگی"}
+        onChange={(event) => handleChange("lastName", event)}
+        onBlur={handleBlur}
+        name="lastName"
+        value={data.lastName}
+        type="text"
+      />
 
       <Input
         label={"ایمیل"}
@@ -39,9 +41,17 @@ const MyForm = () => {
         value={data.email}
         onChange={(event) => handleChange("email", event)}
         onBlur={handleBlur}
-        rules={rules.email}
       />
-      {touched.email && errors.email && <div>{errors.email}</div>}
+
+      <Input
+        label={"موبایل"}
+        onChange={(event) => handleChange("mobile", event)}
+        onBlur={handleBlur}
+        name="mobile"
+        value={data.mobile}
+        type="text"
+      />
+      {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
 
       <button type="submit" disabled={isSubmitting}>
         ثبت

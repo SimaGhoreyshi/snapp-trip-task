@@ -1,9 +1,9 @@
 import "./App.css";
-import MyForm from "./pages/myForm";
+import MyForm from "./pages/myForm.tsx";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <MyForm />
     </div>
   );

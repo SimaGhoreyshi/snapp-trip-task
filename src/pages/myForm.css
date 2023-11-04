@@ -1,0 +1,35 @@
+.my-form::before {
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  filter: blur(10px);
+}
+.my-form {
+  display: flex;
+  margin: 0 auto;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  column-gap: 20px;
+  flex-direction: row;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 7px var(--gray);
+  border-radius: 0.5rem;
+}
+
+.my-form > * {
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: 40%;
+}
+
+@media screen and (max-width: 480px) {
+  .my-form {
+    padding: 15px;
+    column-gap: 10px;
+    flex-direction: column;
+  }
+
+  .my-form > * {
+    flex-basis: 100%;
+  }
+}

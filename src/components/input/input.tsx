@@ -1,5 +1,6 @@
 import React from "react";
 import "./input.css";
+import { IInput } from "./input.type";
 
 const Input = ({
   placeholder,
@@ -8,9 +9,8 @@ const Input = ({
   onChange,
   onBlur,
   type = "text",
-  rules,
   autoComplete,
-}) => {
+} : IInput) => {
   return (
     <div className="custom-input">
       <label htmlFor="input">{label}</label>
@@ -21,7 +21,6 @@ const Input = ({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
-        rules={rules}
         autoComplete={autoComplete}
       />
       <p className="input-validator">{}</p>
