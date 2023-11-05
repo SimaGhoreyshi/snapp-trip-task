@@ -1,11 +1,19 @@
 .app {
   min-height: 100vh;
   min-width: 100vw;
+  padding-top: 3rem;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding-top: 3rem;
   background-size: contain;
   background-color: #e0f3fd;
   box-sizing: border-box;
   background-image: url("./assets/images/hotel.webp");
+}
+
+@media screen and (max-width: 480px) {
+  .app {
+    background-position: 55% 100%;
+    padding-top: 1rem;
+    background-size: 400% 100%;
+  }
 }

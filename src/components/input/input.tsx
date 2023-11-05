@@ -10,9 +10,10 @@ const Input = ({
   onBlur,
   type = "text",
   autoComplete,
+  className
 } : IInput) => {
   return (
-    <div className="custom-input">
+    <div className={`custom-input ${className}`}>
       <label htmlFor="input">{label}</label>
       <input
         id="input"

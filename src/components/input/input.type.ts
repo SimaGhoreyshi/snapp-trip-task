@@ -1,12 +1,13 @@
 import { FormEvent } from "react";
 
 export interface IInput {
+  className: string;
   name: string;
-  value: string;
+  value?: string;
   type?: string;
   label?: string;
   placeholder?: string;
   autoComplete?: string;
-  onChange?: (e: FormEvent<HTMLInputElement>) => void;
-  onBlur?: (e: FormEvent<HTMLInputElement>) => void;
+  onChange?: (event: FormEvent<HTMLInputElement>) => void;
+  onBlur?: (event: FormEvent<HTMLInputElement>) => void;
 }

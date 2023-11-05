@@ -1,6 +1,6 @@
 export interface IButton {
-  label?: string;
+  children?: any;
   disabled?: boolean;
-  type?: string;
+  type?: "button" | "submit" | "reset" | undefined;
   onClick?: () => void;
 }
