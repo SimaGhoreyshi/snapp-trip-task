@@ -1,10 +1,17 @@
 import React from "react";
-import { IButton } from "./button.type";
 
-const Button = ({ label, onClick, disabled }: IButton) => {
+import { IButton } from "./button.type";
+import "./button.css";
+
+const Button = ({ children, onClick, disabled, type }: IButton) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
-      {label}
+    <button
+      className="button"
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+    >
+      {children}
     </button>
   );
 };

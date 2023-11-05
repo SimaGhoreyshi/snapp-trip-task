@@ -1,12 +1,13 @@
-import { FormEvent, InputHTMLAttributes, useState } from "react";
-import { rules } from "./validationRules";
-import { validatorMessages } from "./validatorMessages";
+import { FormEvent, useState } from "react";
+import { rules } from "../validationRules";
+import { validatorMessages } from "../validatorMessages";
+import { Data, Errors, IUseForm, Touched } from "./useForm.type";
 
-const useForm = ({ initialData: {} = {} }) => {
-  const [data, setData] = useState(initialData);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const useForm = (props?: IUseForm) => {
+  const [data, setData] = useState<Data | undefined>(props?.data || {});
+  const [errors, setErrors] = useState<Errors>({});
+  const [touched, setTouched] = useState<Touched>({});
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleChange = (field: string, event: FormEvent<HTMLInputElement>) => {
     const { name, value } = event.target as HTMLInputElement; //field name and field value
@@ -27,14 +28,16 @@ const useForm = ({ initialData: {} = {} }) => {
     }));
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLInputElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setErrors(validate(data));
     setIsSubmitting(false);
+    if (data) {
+      setErrors(validate(data));
+    }
   };
 
-  const validate = (data: object) => {
+  const validate = (data: Data): Errors => {
     const errors = {};
 
     Object.keys(data).forEach((dataKey) => {
@@ -43,7 +46,6 @@ const useForm = ({ initialData: {} = {} }) => {
         errors[dataKey] = validatorMessages[dataKey];
       }
     });
-    console.log(errors);
 
     return errors;
   };
@@ -53,6 +55,7 @@ const useForm = ({ initialData: {} = {} }) => {
     errors,
     touched,
     isSubmitting,
+    setErrors,
     handleChange,
     handleBlur,
     handleSubmit,
